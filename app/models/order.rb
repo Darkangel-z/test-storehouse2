@@ -1,4 +1,17 @@
 class Order < ApplicationRecord
-  has_many :ordet_items
-  has_many :products, through: :ordet_items
+   HASHIDS = Hashids.new(Rails.application.secrets[:secret_key_base] + 'Order', 8, ('A'..'Z').to_a.join)
+  has_many :order_items, inverse_of: :order
+  has_many :products, through: :order_items
+
+  accepts_nested_attributes_for :order_items,
+           allow_destroy: true
+
+  def self.build
+    order = self.new
+    order.order_items.build.build_product
+  end
+
+   def auth_token
+     @auth_token ||= HASHIDS.encode(rand(10**7)).first(8)
+   end
 end
