@@ -15,12 +15,9 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.token = @order.auth_token
-    p ['!!!! params', order_params]
-    p ['!!! order', @order]
-    p ['!!! order', @order.order_items]
-    p ['!!! order', @order.products]
     if @order.save
-      p ['!!!!!!!!!!!', 'save']
+      flash[:notice] = t('orders.created')
+      redirect_to root_path
     else
       @products = Product.all
       render :new

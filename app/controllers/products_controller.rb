@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      p '4654'
+      flash[:notice] = t('products.created')
+      redirect_to action: :index
     else
       render :new
     end
@@ -18,6 +19,6 @@ class ProductsController < ApplicationController
 
 private
 def product_params
-  params.require(:product).permit(:image, :title)
+  params.require(:product).permit(:title, :image)
 end
 end

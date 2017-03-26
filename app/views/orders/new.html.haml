@@ -3,10 +3,10 @@
     = rf.input :product_id
     = rf.input :count
     = rf.input :direction
-    = rf.remove_fields_link 'Remove item'
+    = rf.remove_fields_link t('orders.item.remove')
 
 
-  = f.add_fields_link :order_items, 'Add item', class: 'btn btn-sm btn-primary'
-  = link_to 'Add product', new_product_path
+  = f.add_fields_link :order_items, t('orders.item.add')
+  = link_to t('products.add'), new_product_path
 
   = f.submit
