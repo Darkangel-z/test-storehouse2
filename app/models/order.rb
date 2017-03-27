@@ -6,10 +6,7 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_items,
            allow_destroy: true
 
-  def self.build
-    order = self.new
-    order.order_items.build.build_product
-  end
+  validates :order_items, presence: true
 
    def auth_token
      @auth_token ||= HASHIDS.encode(rand(10**7)).first(8)

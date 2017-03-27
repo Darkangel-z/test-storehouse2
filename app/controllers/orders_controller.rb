@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_storekeeper!
+
   def index
     @orders = Order.all
   end
@@ -21,11 +23,5 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.fetch(:order, {}).permit(order_items_attributes: [:id, :_destroy, :product_id, :count, :direction, product_attributes: [:id, :title]])
-  end
-
-  def is_admin?
-    unless current_user.admin?
-      redirect_to root_path
-    end
   end
 end
