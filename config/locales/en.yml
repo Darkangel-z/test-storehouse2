@@ -2,6 +2,7 @@ en:
   products:
     add: Add a new product
     created: Product was successfully created.
+    all: Products
   orders:
     created: Order was successfully created.
     not_found: Sorry, but such order does not exist.
@@ -17,3 +18,6 @@ en:
       remove: Remove item
       welcome: Welcome!!!
   back: Back
+  login: Log In
+  company: Test Storehouse
+  storekeepers: Storekeepers

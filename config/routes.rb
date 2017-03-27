@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/', controller: :welcome, action: :search
   get '/show', controller: :welcome, action: :search
 
+  resources :storekeepers, controller: :storekeepers, only: %i[index new create destroy]
+
   resources :orders
   resources :products
 end

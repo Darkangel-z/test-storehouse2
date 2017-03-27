@@ -1,11 +1,10 @@
 class OrdersController < ApplicationController
-  def show
-    @order = Order.find(params[:id])
+  def index
+    @orders = Order.all
   end
 
   def new
     @order = Order.new
-    @products = Product.all
   end
 
   def create
@@ -15,13 +14,18 @@ class OrdersController < ApplicationController
       flash[:notice] = t('orders.created')
       redirect_to root_path
     else
-      @products = Product.all
       render :new
     end
   end
 
   private
   def order_params
-    params.fetch(:order, {}).permit(:title, order_items_attributes: [:id, :_destroy, :product_id, :count, :direction, product_attributes: [:id, :title]])
+    params.fetch(:order, {}).permit(order_items_attributes: [:id, :_destroy, :product_id, :count, :direction, product_attributes: [:id, :title]])
+  end
+
+  def is_admin?
+    unless current_user.admin?
+      redirect_to root_path
+    end
   end
 end

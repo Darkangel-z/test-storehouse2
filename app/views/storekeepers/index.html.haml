@@ -1,0 +1,17 @@
+%h1
+  = t('storekeepers.all')
+= link_to t('storekeepers.new'), new_storekeeper_path
+
+%table.table
+  %thead
+    %tr
+      %th
+        = t('storekeepers.email')
+      %th
+        = t('delete')
+  %tbody
+    - @storekeepers.each do |storekeeper|
+      %tr
+        %td= storekeeper.email
+        %td
+          = link_to t('delete'), storekeepers_path(storekeeper), method: :delete, data:{ confirm: 'Are you shure?'}, class: 'action-link'
