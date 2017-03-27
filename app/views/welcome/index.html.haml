@@ -1,0 +1,5 @@
+%h1= t('welcome')
+%br
+= simple_form_for show_path, method: :post do |f|
+  = f.input :search, label: t('orders.token')
+  = f.submit  t('orders.find')

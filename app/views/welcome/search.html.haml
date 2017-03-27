@@ -1,0 +1,16 @@
+%h1= t('orders.show')
+
+%p
+  = t('orders.token')
+  = @order.token
+
+%h3= t('orders.item.all')
+- @order_item.each do |ord|
+  %h5= t('orders.item.title')
+  = ord.product.title
+  %h5= t('orders.item.count')
+  = ord.count
+  %h5= t('orders.item.direction')
+  = ord.direction
+%br
+= link_to t('back'), root_path

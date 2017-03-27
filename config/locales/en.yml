@@ -4,6 +4,16 @@ en:
     created: Product was successfully created.
   orders:
     created: Order was successfully created.
+    not_found: Sorry, but such order does not exist.
+    token: Order token
+    find: Find
+    show: Orders
     item:
       add: Add a new item
+      all: All products of order
+      title: Name
+      count: Count
+      direction: Direction
       remove: Remove item
+      welcome: Welcome!!!
+  back: Back
