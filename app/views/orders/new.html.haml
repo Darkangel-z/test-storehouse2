@@ -2,7 +2,7 @@
   = f.simple_fields_for :order_items, dynamic: true do |rf|
     = rf.input :product_id
     = rf.input :count
-    = rf.input :direction
+    = rf.input :direction, collection: ['on', 'from']
     = rf.remove_fields_link t('orders.item.remove')
 
 

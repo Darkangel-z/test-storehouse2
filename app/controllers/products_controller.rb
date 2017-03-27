@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.count = 0
     if @product.save
       flash[:notice] = t('products.created')
       redirect_to action: :index

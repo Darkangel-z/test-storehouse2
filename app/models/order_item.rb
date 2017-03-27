@@ -13,16 +13,16 @@ class OrderItem < ApplicationRecord
 
   def check_quantity
     errors.add(:count, "No such quantity of product in stock") if
-      (unless coming
+      (unless direction == 'to'
         Product.find_by('id = ?', product_id).count < count
       end)
   end
 
   def change_count
     product = Product.find_by('id = ?', product_id)
-    if coming
+    if direction == 'on'
       product.count = product.count + count
-    else
+    elsif direction == 'from'
       product.count = product.count - count
     end
     begin
